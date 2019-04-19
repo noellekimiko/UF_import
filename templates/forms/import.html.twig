@@ -1,0 +1,29 @@
+<form class="js-form" method="{{form.method | default('POST')}}" action="{{site.uri.public}}/{{form.action}}" enctype="multipart/form-data">
+    {% include "forms/csrf.html.twig" %}
+    <div class="js-form-alerts">
+    </div>
+    <div class="row">
+        {% block import_form %}
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="input-file">{{translate('USER.IMPORT.FILE')}}</label>
+                    <div class="input-group">
+                        <input type="file" name="csvFile">
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div><br>
+    <div class="row">
+        <div class="col-xs-8 col-sm-4">
+            <button type="submit" class="btn btn-block btn-lg btn-success">{{form.submit_text}}</button>
+        </div>
+        <div class="col-xs-4 col-sm-3 pull-right">
+            <button type="button" class="btn btn-block btn-lg btn-link" data-dismiss="modal">{{translate('CANCEL')}}</button>
+        </div>
+    </div>
+</form>
+<!-- Include validation rules -->
+<script>
+{% include "pages/partials/page.js.twig" %}
+</script>

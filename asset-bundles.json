@@ -1,0 +1,17 @@
+{
+    "bundle": {
+        "js/pages/import": {
+            "scripts": [
+                "userfrosting/js/widgets/import.js",
+                "userfrosting/js/pages/import.js"
+            ],
+            "options": {
+                "result": {
+                    "type": {
+                        "scripts": "plain"
+                    }
+                }
+            }
+        }
+    }
+}

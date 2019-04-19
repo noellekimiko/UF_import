@@ -1,0 +1,8 @@
+csvFile:
+  validators:
+    required:
+      label: File
+      message: Please upload a file.
+    regex:
+      regex: ^.*\.csv$
+      message: You did not provide a valid CSV file.

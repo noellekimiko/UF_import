@@ -1,0 +1,17 @@
+{
+    "name": "gspp/import",
+    "type": "userfrosting-sprinkle",
+    "description": "Import helper for UserFrosting",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "GSPP",
+            "homepage": "https://gspp.berkeley.edu"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\Import\\": "src/"
+        }
+    }
+}
