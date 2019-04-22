@@ -32,5 +32,4 @@ You can also change the `header_row` setting to `FALSE` in which case the `heade
 
 ## Notes
 *  This sprinkle must be loaded after `account` as it replaces the default admin dashboard for viewing users.
-*  If any of the users in your import file have issues, the entire import will fail with a 500 error. The likely cause is there is a collision with usernames or emails, but there is not yet code in this sprinkle to report which user had issues.
 *  Code may contain bugs or errors. Please open an issue if you find one.
