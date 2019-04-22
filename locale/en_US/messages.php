@@ -13,6 +13,7 @@ return [
             'FILE' => 'File',
             'EMAIL_IN_USE' => 'Email <strong>{{email}}</strong> is already in use.',
             'USERNAME_IN_USE' => 'Username <strong>{{user_name}}</strong> is already in use.',
+            'PROPERTY_MISSING' => 'Account <strong>{{user_name}}</strong> cannot be created as <strong>{{property}}</strong> is required to create a new user.'
         ]
     ]
 ];

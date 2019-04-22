@@ -60,6 +60,17 @@ class ImportUserController extends SimpleController
         $userCount = 0;
         foreach ($rows as $row) {
             try {
+                // Make sure all required fields are defined
+                foreach ($config['import.required'] as $property) {
+                    if (!isset($row[$property]) || empty($row[$property])) {
+                        $ms->addMessageTranslated('danger', 'USER.IMPORT.PROPERTY_MISSING', [
+                           'property' => $property,
+                           'user_name' => $row['user_name']
+                        ]);
+                        continue;
+                    }
+                }
+
                 // Check if username or email already exists
                 if ($classMapper->staticMethod('user', 'findUnique', $row['user_name'], 'user_name')) {
                     $ms->addMessageTranslated('danger', 'USER.IMPORT.USERNAME_IN_USE', $row);
