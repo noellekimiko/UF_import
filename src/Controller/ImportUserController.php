@@ -50,14 +50,32 @@ class ImportUserController extends SimpleController
         } else {
             $rows = $csv->fetchAssoc($config['import.header_keys']);
         }
-        $userCount = 0;
-        foreach ($rows as $row) {
-            $user = $fm->create(User::class, $row);
-            $userCount += 1;
-        }
 
         /** @var \UserFrosting\Sprinkle\Core\Alert\AlertStream $ms */
         $ms = $this->ci->alerts;
+        
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = $this->ci->classMapper;
+
+        $userCount = 0;
+        foreach ($rows as $row) {
+            try {
+                // Check if username or email already exists
+                if ($classMapper->staticMethod('user', 'findUnique', $row['user_name'], 'user_name')) {
+                    $ms->addMessageTranslated('danger', 'USER.IMPORT.USERNAME_IN_USE', $row);
+                    continue;
+                }
+                if ($classMapper->staticMethod('user', 'findUnique', $row['email'], 'email')) {
+                    $ms->addMessageTranslated('danger', 'USER.IMPORT.EMAIL_IN_USE', $row);
+                    continue;
+                }
+
+                $user = $fm->create(User::class, $row);
+                $userCount += 1;
+            } catch (Exception $e) {
+                return $response->withJson([], 400);
+            }
+        }
         $ms->addMessageTranslated('success', 'USER.IMPORT.UPLOAD_SUCCESS', [
            'userCount' => $userCount
         ]);
