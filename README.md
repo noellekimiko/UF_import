@@ -26,6 +26,7 @@ You can upload CSV files either with or without a header row. The configuration 
 *  email
 *  locale
 *  group_id
+
 If you include a header row, the order of the columns is not important as values are keyed directly to the column header.
 
 You can also change the `header_row` setting to `FALSE` in which case the `header_keys` array will be used. In this case, please ensure your upload file has the columns in the exact order shown in the configuration file. 
