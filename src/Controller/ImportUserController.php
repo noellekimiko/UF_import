@@ -40,8 +40,9 @@ class ImportUserController extends SimpleController
         /** @var \UserFrosting\Support\Repository\Repository $config */
         $config = $this->ci->config;
 
-        $csvFile = $args['csvFile'];
-        $csv = Reader::createFromPath($_FILES['csvFile']['tmp_name'], 'r');
+        $files = $request->getUploadedFiles();
+        $csvFile = $files['csvFile'];
+        $csv = Reader::createFromStream(fopen($csvFile->file, 'r'));
 
         $fm = $this->ci->factory;
         // Determine if there is a header row in the import file or not
