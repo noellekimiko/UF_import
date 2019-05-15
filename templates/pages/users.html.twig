@@ -1,14 +1,4 @@
-{% extends "pages/abstract/dashboard.html.twig" %}
-
-{% block stylesheets_page %}
-    <!-- Page-specific CSS asset bundle -->
-    {{ assets.css('css/form-widgets') | raw }}
-{% endblock %}
-
-{# Overrides blocks in head of base template #}
-{% block page_title %}{{ translate("USER", 2)}}{% endblock %}
-
-{% block page_description %}{{ translate("USER.PAGE_DESCRIPTION")}}{% endblock %}
+{% extends "@admin/pages/users.html.twig" %}
 
 {% block body_matter %}
     <div class="row">
